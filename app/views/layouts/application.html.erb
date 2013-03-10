@@ -21,7 +21,7 @@
                   <i class="icon-user"></i>
                   <strong><%= current_user.email %></strong>
               <% else %>
-                  <i class="icon-cog"></i>
+                  <i class="icon-user"></i>
                   User
               <% end %>
               <b class="caret"></b>
@@ -30,6 +30,7 @@
 
               <% if user_signed_in? %>
                   <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                  <li class="divider"></li>
                   <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               <% else %>
                   <li><%= link_to 'Sign up', new_user_registration_path %>  </li>
@@ -47,8 +48,11 @@
 
 <section class="container main_block">
   <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+      </div>
+<% end %>
 
   <div class="row">
     <div class="span12">
